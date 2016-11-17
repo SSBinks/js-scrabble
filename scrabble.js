@@ -9,24 +9,18 @@ Scrabble =  {
     10: ["Q", "Z"]
   },
 
-  // Object.prototype.getKeyByValue = function( value ) {
-  //   for( var prop in Scrabble.scoreChart ) {
-  //     if( Scrabble.scoreChart.hasOwnProperty( prop ) ) {
-  //       if( Scrabble.scoreChart[ prop ] === value )
-  //       return prop;
-  //     }
-  //   }
-  // },
+
   score: function(word) {
     var score = 0;
     var upWord = word.toUpperCase();
+    var num = Object.keys(Scrabble.scoreChart);
+    var letters = Object.values(Scrabble.scoreChart);
     for (i = 0; i < upWord.length; i++) {
-
-
-      console.log(">>>>>>>>" + Scrabble.scoreChart.getKeyByValue(upWord[i]));
-      score += parseInt(Scrabble.scoreChart.getKeyByValue(upWord[i]));
-      console.log("+++++++++++++++++++" + score);
-
+      for (d = 0; d < num.length; d ++){
+        if (letters[d].includes(upWord[i])){
+        score += parseInt(num[d]);
+      }
+      }
     }
     return score;
   },
@@ -36,13 +30,15 @@ Scrabble =  {
 
 
 
-// YOUR CODE HERE
-Scrabble.prototype.helloWorld = function() {
-  return 'hello world!';
-};
 
-var shari = new Scrabble();
-nono = shari.score("cat");
+
+// YOUR CODE HERE
+// Scrabble.prototype.helloWorld = function() {
+//   return 'hello world!';
+// };
+
+
+var nono = Scrabble.score("cat");
 console.log(nono);
 
 module.exports = Scrabble;
