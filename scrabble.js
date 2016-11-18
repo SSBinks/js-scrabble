@@ -50,16 +50,15 @@ Scrabble =  {
   },
 };
 
+var Player = function(name){
+  this.person = name;
+
+
+};
 
 
 
 
-
-
-// YOUR CODE HERE
-// Scrabble.prototype.helloWorld = function() {
-//   return 'hello world!';
-// };
 
 //Faux TDD
 
