@@ -18,11 +18,27 @@ Scrabble =  {
     for (i = 0; i < upWord.length; i++) {
       for (d = 0; d < num.length; d ++){
         if (letters[d].includes(upWord[i])){
-        score += parseInt(num[d]);
-      }
+          score += parseInt(num[d]);
+        }
       }
     }
     return score;
+  },
+
+  highestScore: function(words){
+    var scores = [];
+    var max = 0;
+    var maxWord = "";
+    words.forEach(function(element, index){
+      scores.push(Scrabble.score(element));
+    });
+    for (var i = 0; i < scores.length; i++){
+      if (scores[i]> max) {
+        maxWord = words[i];
+        max = scores[i];
+      }
+    }
+    return maxWord;
   },
 };
 
@@ -41,4 +57,6 @@ Scrabble =  {
 var nono = Scrabble.score("cat");
 console.log(nono);
 
+var shari = Scrabble.highestScore(["blue", "cat", "tree"]);
+console.log(shari);
 module.exports = Scrabble;
