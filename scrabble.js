@@ -22,6 +22,9 @@ Scrabble =  {
         }
       }
     }
+    if (word.length >= 7){
+      score += 50;
+    }
     return score;
   },
 
@@ -34,11 +37,15 @@ Scrabble =  {
     });
     for (var i = 0; i < scores.length; i++){
       if (scores[i] === max){
-        if( words[i].length < maxWord.length){
+        if( (words[i].length === 7 && words[i] > maxWord) || ( words[i].length < maxWord.length && maxWord.length !== 7)){
           maxWord = words[i];
+
         }
+        // else if ( words[i].length < maxWord.length && maxWord.length !== 7){
+        //   maxWord = words[i];
+        // }
       }
-    else  if (scores[i] > max) {
+      else  if (scores[i] > max) {
         maxWord = words[i];
         max = scores[i];
       }
@@ -58,14 +65,27 @@ Scrabble =  {
 //   return 'hello world!';
 // };
 
+//Faux TDD
 
+//Cat shuold equal 5
 var nono = Scrabble.score("cat");
 console.log(nono);
 
+// High scoring word 120 points as 50 is added
+var highWord = Scrabble.score("zzzzzzz");
+console.log(highWord);
+
+//Should return a high scoring word which is tree
 var shari = Scrabble.highestScore(["blue", "cat", "tree"]);
 console.log(shari);
 
-//should return dog
+//should return dog as is smaller than trees but same value
 var sameValue = Scrabble.highestScore(["trees", "dog"]);
 console.log(sameValue);
+
+// should return num
+var longMax = Scrabble.highestScore(["foursts", "qqzzqq"]);
+console.log(longMax);
+
+//Should return boy as is the first max word with same value
 module.exports = Scrabble;
