@@ -33,7 +33,12 @@ Scrabble =  {
       scores.push(Scrabble.score(element));
     });
     for (var i = 0; i < scores.length; i++){
-      if (scores[i]> max) {
+      if (scores[i] === max){
+        if( words[i].length < maxWord.length){
+          maxWord = words[i];
+        }
+      }
+    else  if (scores[i] > max) {
         maxWord = words[i];
         max = scores[i];
       }
@@ -59,4 +64,8 @@ console.log(nono);
 
 var shari = Scrabble.highestScore(["blue", "cat", "tree"]);
 console.log(shari);
+
+//should return dog
+var sameValue = Scrabble.highestScore(["trees", "dog"]);
+console.log(sameValue);
 module.exports = Scrabble;
