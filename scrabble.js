@@ -89,7 +89,7 @@ Player.prototype.totalScore = function(){
 };
 
 Player.prototype.highestScoringWord = function (){
- return Scrabble.highestScore(this.plays);
+  return Scrabble.highestScore(this.plays);
 };
 
 Player.prototype.maxScore = function () {
