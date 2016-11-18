@@ -84,11 +84,17 @@ Player.prototype.hasWon = function(){
 
 Player.prototype.totalScore = function(){
 
-    this.finalScore = this.scores.reduce(add, 0);
-    return this.finalScore;
+  this.finalScore = this.scores.reduce(add, 0);
+  return this.finalScore;
 };
 
+Player.prototype.highestScoringWord = function (){
+ return Scrabble.highestScore(this.plays);
+};
 
+Player.prototype.maxScore = function () {
+  return Math.max.apply(Math, this.scores);
+};
 
 
 //Faux TDD
@@ -116,16 +122,23 @@ console.log(longMax);
 //Should return boy as is the first max word with same value
 var firstWord = Scrabble.highestScore(["dog", "pou", "boy", "cow"]);
 console.log(firstWord);
+
 //This should equal 11
 var myPlayer = new Player("sharshar");
 plays = myPlayer.play("hotdog");
 wins = myPlayer.hasWon();
 scores = myPlayer.totalScore();
-console.log(plays);
-console.log(wins);
-console.log(scores);
+console.log(plays); // 11
+console.log(wins); // false
+console.log(scores); // 11
 
-
+var daPlaya = new Player("binks");
+daPlaya.play("zoo");
+daPlaya.play("cat");
+player = daPlaya.highestScoringWord();
+win = daPlaya.maxScore();
+console.log(player); //should return zoo
+console.log(win); // shoud return 12 from zoo
 
 module.exports = Scrabble;
 module.exports = Player;
