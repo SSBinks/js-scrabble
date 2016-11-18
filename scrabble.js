@@ -52,8 +52,8 @@ Scrabble =  {
 
 var Player = function(name){
   this.person = name;
-  this.plays =[];
-  this.scores =[];
+  this.plays = [];
+  this.scores = [];
   this.finalScore = 0;
 };
 
@@ -63,17 +63,30 @@ function add(a, b) {
 
 Player.prototype.play = function(words){
   this.plays.push(words);
-  if (this.finalScore >= 100){
+  if (this.hasWon()){
     return false;
   }
   else {
     this.scores.push(Scrabble.score(words));
-    this.finalScore = this.scores.reduce(add, 0);
+    this.totalScore();
     return Scrabble.score(words);
   }
-
 };
 
+Player.prototype.hasWon = function(){
+  if (this.finalScore >= 100) {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
+
+Player.prototype.totalScore = function(){
+
+    this.finalScore = this.scores.reduce(add, 0);
+    return this.finalScore;
+};
 
 
 
@@ -106,7 +119,11 @@ console.log(firstWord);
 //This should equal 11
 var myPlayer = new Player("sharshar");
 plays = myPlayer.play("hotdog");
+wins = myPlayer.hasWon();
+scores = myPlayer.totalScore();
 console.log(plays);
+console.log(wins);
+console.log(scores);
 
 
 
