@@ -39,11 +39,7 @@ Scrabble =  {
       if (scores[i] === max){
         if( (words[i].length === 7 && words[i] > maxWord) || ( words[i].length < maxWord.length && maxWord.length !== 7)){
           maxWord = words[i];
-
         }
-        // else if ( words[i].length < maxWord.length && maxWord.length !== 7){
-        //   maxWord = words[i];
-        // }
       }
       else  if (scores[i] > max) {
         maxWord = words[i];
@@ -88,4 +84,7 @@ var longMax = Scrabble.highestScore(["foursts", "qqzzqq"]);
 console.log(longMax);
 
 //Should return boy as is the first max word with same value
+var firstWord = Scrabble.highestScore(["dog", "pou", "boy", "cow"]);
+
+console.log(firstWord);
 module.exports = Scrabble;
