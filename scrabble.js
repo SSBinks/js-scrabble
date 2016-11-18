@@ -47,12 +47,30 @@ Scrabble =  {
       }
     }
     return maxWord;
-  },
+  }
 };
 
 var Player = function(name){
   this.person = name;
+  this.plays =[];
+  this.scores =[];
+  this.finalScore = 0;
+};
 
+function add(a, b) {
+  return a + b;
+}
+
+Player.prototype.play = function(words){
+  this.plays.push(words);
+  if (this.finalScore >= 100){
+    return false;
+  }
+  else {
+    this.scores.push(Scrabble.score(words));
+    this.finalScore = this.scores.reduce(add, 0);
+    return Scrabble.score(words);
+  }
 
 };
 
@@ -84,6 +102,13 @@ console.log(longMax);
 
 //Should return boy as is the first max word with same value
 var firstWord = Scrabble.highestScore(["dog", "pou", "boy", "cow"]);
-
 console.log(firstWord);
+//This should equal 11
+var myPlayer = new Player("sharshar");
+plays = myPlayer.play("hotdog");
+console.log(plays);
+
+
+
 module.exports = Scrabble;
+module.exports = Player;
